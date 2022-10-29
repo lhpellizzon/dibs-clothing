@@ -3,7 +3,9 @@ import CategoryContainer from "../components/CategoryContainer";
 function Home() {
   return (
     <section id="home">
-      <CategoryContainer />
+      <div className="container mx-auto px-5 py-5">
+        <CategoryContainer />
+      </div>
     </section>
   );
 }

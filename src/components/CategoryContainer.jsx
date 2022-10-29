@@ -10,7 +10,7 @@ function CategoryContainer() {
   ];
 
   return (
-    <div className="grid grid-cols-6 grid-rows-3">
+    <div className="category">
       {categories.map((category) => (
         <CategoryItemList
           key={category.id}

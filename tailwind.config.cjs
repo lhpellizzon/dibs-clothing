@@ -4,7 +4,12 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        sm: "520px",
+        // prettier-ignore
+        "sm": "520px",
+      },
+      backgroundImage: {
+        // prettier-ignore
+        
       },
     },
   },

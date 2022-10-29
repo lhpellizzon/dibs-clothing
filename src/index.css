@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.category {
+  @apply w-full flex flex-col justify-between gap-2 sm:flex-row sm:flex-wrap;
+
+  &-item {
+    @apply relative flex flex-col justify-center items-center min-w-[30%] h-60 bg-red-500 overflow-hidden flex-auto rounded-2xl hover:cursor-pointer;
+
+    .category-text {
+      @apply flex flex-col text-center z-10;
+    }
+
+    .category-image {
+      @apply absolute w-full h-full transition-all duration-100 ease-in-out bg-no-repeat bg-center bg-contain;
+    }
+
+    &:hover {
+      .category-image {
+        @apply scale-150;
+      }
+    }
+  }
+}

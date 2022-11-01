@@ -5,10 +5,8 @@ import Container from "./components/Container";
 function App() {
   return (
     <>
-      <Container>
-        <Header />
-        <Home />
-      </Container>
+      <Header />
+      <Home />
     </>
   );
 }

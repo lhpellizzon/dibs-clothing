@@ -9,7 +9,7 @@ function CategoryItemList({ categoryName, id, imageUrl }) {
 
       <div className="category-text z-10">
         <h2>{categoryName}</h2>
-        <p>Show Now</p>
+        <p>Shop Now</p>
       </div>
     </div>
   );

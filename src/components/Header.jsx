@@ -1,8 +1,12 @@
+import Container from "./Container";
+
 function Header() {
   return (
-    <div className="">
-      <h1 className="">Hello </h1>
-    </div>
+    <Container>
+      <div className="bg-red-500">
+        <h1 className="">Hello </h1>
+      </div>
+    </Container>
   );
 }
 

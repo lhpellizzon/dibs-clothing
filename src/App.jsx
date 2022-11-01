@@ -1,5 +1,6 @@
 import Home from "./pages/Home";
 import Header from "./components/Header";
+import Category from "./pages/Category";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/category/:categoryName" element={<Category />} />
       </Routes>
     </BrowserRouter>
   );

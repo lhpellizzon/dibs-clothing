@@ -1,5 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 function CategoryItemList({ categoryName, id, imageUrl }) {
-  console.log(imageUrl);
+  const navigate = useNavigate();
   return (
     <div className="category-item">
       <div
@@ -7,7 +9,7 @@ function CategoryItemList({ categoryName, id, imageUrl }) {
         style={{ backgroundImage: `url(${imageUrl})` }}
       ></div>
 
-      <div className="category-text z-10">
+      <div className="category-text" onClick={() => navigate("/category")}>
         <h2>{categoryName}</h2>
         <p>Shop Now</p>
       </div>

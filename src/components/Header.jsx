@@ -1,17 +1,18 @@
 import { Outlet, Link } from "react-router-dom";
-
+import { BsBag } from "react-icons/bs";
+import Crown from "../assets/imgs/crown.svg";
 function Header() {
   return (
     <>
       <nav className="nav-container">
-        <div className="nav-log">
+        <div className="nav-logo">
           <Link to="/">
-            <img src="" alt="" />
+            <img src={Crown} alt="" />
           </Link>
         </div>
 
-        <div className="nav-links">
-          <ul>
+        <div>
+          <ul className="nav-links">
             <li>
               <Link to="/shop">Shop</Link>
             </li>
@@ -23,7 +24,15 @@ function Header() {
             </li>
             <li>
               <Link to="/checkout">
-                <img src="" alt="" />
+                <div className="relative">
+                  <BsBag className="text-3xl" />
+                  <p
+                    className="absolute text-sm font-bold"
+                    style={{ left: "11px", top: "8px" }}
+                  >
+                    2
+                  </p>
+                </div>
               </Link>
             </li>
           </ul>

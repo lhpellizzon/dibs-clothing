@@ -1,17 +1,21 @@
 import Home from "./pages/Home";
 import Header from "./components/Header";
 import Category from "./pages/Category";
+import Shop from "./pages/Shop";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
+    <>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/category/:categoryName" element={<Category />} />
+        <Route path="/" element={<Header />}>
+          <Route index element={<Home />} />
+          <Route path="/shop" element={<Shop />}>
+            <Route path=":categoryName" element={<Category />} />
+          </Route>
+        </Route>
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 

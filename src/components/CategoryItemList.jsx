@@ -9,13 +9,17 @@ function CategoryItemList({ categoryName, id, imageUrl }) {
         style={{ backgroundImage: `url(${imageUrl})` }}
       ></div>
 
-      <div
+      <a
         className="category-text"
-        onClick={() => navigate(`/category/${categoryName}`)}
+        tabIndex="0"
+        onKeyDown={(e) =>
+          e.key === "Enter" && navigate(`/shop/${categoryName}`)
+        }
+        onClick={() => navigate(`/shop/${categoryName}`)}
       >
         <h2>{categoryName}</h2>
         <p>Shop Now</p>
-      </div>
+      </a>
     </div>
   );
 }

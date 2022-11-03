@@ -3,18 +3,18 @@
 @tailwind utilities;
 
 .nav-container {
-  @apply container mx-auto;
+  @apply container mx-auto min-w-full md:min-w-max;
 }
 
 .home-container {
-  @apply h-screen flex items-center;
+  @apply mt-40 flex items-center;
 }
 /* Categories container on homepage */
 .category {
-  @apply container mx-auto flex flex-col items-center justify-between gap-2 sm:flex-row sm:flex-wrap;
+  @apply container mx-auto flex flex-col items-center justify-between gap-5 md:gap-2 sm:flex-row sm:flex-wrap;
 
   &-item {
-    @apply relative flex flex-col justify-center items-center min-w-[30%] h-60 bg-red-500 overflow-hidden flex-auto rounded-2xl hover:cursor-pointer;
+    @apply relative flex flex-col justify-center items-center px-4 min-w-[80%] sm:min-w-[30%] h-60 overflow-hidden flex-auto rounded-2xl hover:cursor-pointer;
 
     .category-text {
       @apply flex flex-col gap-3 text-center z-10 bg-white border-2 border-slate-900 opacity-80 py-2 px-5;

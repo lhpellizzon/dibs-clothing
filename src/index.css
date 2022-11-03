@@ -2,8 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+.nav-container {
+  @apply container mx-auto;
+}
+
+.home-container {
+  @apply h-screen flex items-center;
+}
+/* Categories container on homepage */
 .category {
-  @apply w-full flex flex-col justify-between gap-2 sm:flex-row sm:flex-wrap;
+  @apply container mx-auto flex flex-col items-center justify-between gap-2 sm:flex-row sm:flex-wrap;
 
   &-item {
     @apply relative flex flex-col justify-center items-center min-w-[30%] h-60 bg-red-500 overflow-hidden flex-auto rounded-2xl hover:cursor-pointer;

@@ -30,7 +30,7 @@ function Header() {
                     className="absolute text-sm font-bold"
                     style={{ left: "11px", top: "8px" }}
                   >
-                    2
+                    1
                   </p>
                 </div>
               </Link>

@@ -7,6 +7,7 @@ import {
   GoogleAuthProvider,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -32,4 +33,27 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async (userAuth) => {};
+export const createUserDocumentFromAuth = async (userAuth) => {
+  /* Create a user doc on 'users' collection on firebase*/
+  const userDocRef = doc(db, "users", userAuth.uid);
+
+  /* Create a snapShot of the document to check on firebase if exists the userDocRef*/
+  const userSnapshot = await getDoc(userDocRef);
+
+  if (!userSnapshot.exists()) {
+    const { displayName, email } = userAuth;
+
+    try {
+      await setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt: new Date(),
+      });
+
+      toast.success("Welcome! Your Profile was created.");
+    } catch (error) {
+      toast.error("Error while creating user");
+      console.log(error);
+    }
+  }
+};

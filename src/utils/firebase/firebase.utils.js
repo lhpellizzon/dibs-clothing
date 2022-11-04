@@ -40,6 +40,7 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   /* Create a snapShot of the document to check on firebase if exists the userDocRef*/
   const userSnapshot = await getDoc(userDocRef);
 
+  /*Create user if does not exist on database*/
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
 
@@ -50,10 +51,12 @@ export const createUserDocumentFromAuth = async (userAuth) => {
         createdAt: new Date(),
       });
 
-      toast.success("Welcome! Your Profile was created.");
+      toast.success("Welcome! Your Account Was Created.");
     } catch (error) {
-      toast.error("Error while creating user");
+      toast.error("Error while creating your account");
       console.log(error);
     }
   }
+  /*Return userReference*/
+  return userDocRef;
 };

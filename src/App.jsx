@@ -5,7 +5,7 @@ import Shop from "./pages/Shop";
 import SignIn from "./pages/SignIn";
 import Contact from "./pages/Contact";
 import Checkout from "./pages/Checkout";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (

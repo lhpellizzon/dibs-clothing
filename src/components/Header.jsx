@@ -26,10 +26,7 @@ function Header() {
               <Link to="/checkout">
                 <div className="relative">
                   <BsBag className="text-3xl" />
-                  <p
-                    className="absolute text-sm font-bold"
-                    style={{ left: "11px", top: "8px" }}
-                  >
+                  <p className="absolute text-sm font-bold" style={{ left: "11px", top: "8px" }}>
                     1
                   </p>
                 </div>
@@ -38,6 +35,7 @@ function Header() {
           </ul>
         </div>
       </nav>
+
       <Outlet />
     </>
   );

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .nav-container {
-  @apply container flex bg-red-500 justify-between px-10 pt-10 mx-auto min-w-full md:min-w-max;
+  @apply container flex justify-between px-10 pt-10 pb-5 mx-auto border-b-2 border-black min-w-full md:min-w-max;
 
   .nav-logo {
     transform: translateY(-10px);

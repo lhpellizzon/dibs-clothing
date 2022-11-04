@@ -1,8 +1,17 @@
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
-function Category() {
+const Category = () => {
   const { categoryName } = useParams();
-  return <div>Category {categoryName}</div>;
-}
+
+  return (
+    <>
+      <Helmet>
+        <title>{categoryName}</title>
+      </Helmet>
+      <div>Category {categoryName}</div>
+    </>
+  );
+};
 
 export default Category;

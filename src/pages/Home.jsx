@@ -1,13 +1,16 @@
 import CategoryContainer from "../components/CategoryContainer";
-import { useEffect } from "react";
-import { setPageTitle } from "../hooks/setPageTitle";
+import { Helmet } from "react-helmet";
 
 function Home() {
-  setPageTitle("Home title");
   return (
-    <section id="home" className="home-container">
-      <CategoryContainer />
-    </section>
+    <>
+      <Helmet>
+        <title>Dibs Clothing</title>
+      </Helmet>
+      <section id="home" className="home-container">
+        <CategoryContainer />
+      </section>
+    </>
   );
 }
 

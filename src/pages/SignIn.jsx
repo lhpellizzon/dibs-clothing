@@ -1,7 +1,5 @@
-import {
-  signInWithGooglePopup,
-  createUserDocumentFromAuth,
-} from "../utils/firebase/firebase.utils";
+import { signInWithGooglePopup, createUserDocumentFromAuth } from "../utils/firebase/firebase.utils";
+import { Helmet } from "react-helmet";
 
 function SignIn() {
   const googleLogin = async () => {
@@ -19,6 +17,9 @@ function SignIn() {
 
   return (
     <div>
+      <Helmet>
+        <title>Sign In | Dibs</title>
+      </Helmet>
       <button className="bg-red-500 p-2 rounded" onClick={googleLogin}>
         Sign In With Google
       </button>

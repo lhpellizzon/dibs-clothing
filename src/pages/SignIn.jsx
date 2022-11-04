@@ -1,7 +1,6 @@
 import {
   signInWithGooglePopup,
   createUserDocumentFromAuth,
-  signInWithFacebookPopup,
 } from "../utils/firebase/firebase.utils";
 
 function SignIn() {
@@ -11,19 +10,17 @@ function SignIn() {
     const userDocRef = await createUserDocumentFromAuth(user);
   };
 
-  const facebookLogin = async () => {
-    const { user } = await signInWithFacebookPopup();
+  /* Log with Facebook Provider requires APP Id from faceboook for developers */
+  // const facebookLogin = async () => {
+  //   const { user } = await signInWithFacebookPopup();
 
-    const userDocRef = await createUserDocumentFromAuth(user);
-  };
+  //   const userDocRef = await createUserDocumentFromAuth(user);
+  // };
 
   return (
     <div>
       <button className="bg-red-500 p-2 rounded" onClick={googleLogin}>
         Sign In With Google
-      </button>
-      <button className="bg-red-500 p-2 rounded" onClick={facebookLogin}>
-        Sign In With Facebook
       </button>
     </div>
   );

@@ -4,17 +4,12 @@ function CategoryItemList({ categoryName, id, imageUrl }) {
   const navigate = useNavigate();
   return (
     <div className="category-item">
-      <div
-        className="category-image"
-        style={{ backgroundImage: `url(${imageUrl})` }}
-      ></div>
+      <div className="category-image" style={{ backgroundImage: `url(${imageUrl})` }}></div>
 
       <a
         className="category-text"
         tabIndex="0"
-        onKeyDown={(e) =>
-          e.key === "Enter" && navigate(`/shop/${categoryName}`)
-        }
+        onKeyDown={(e) => e.key === "Enter" && navigate(`/shop/${categoryName}`)}
         onClick={() => navigate(`/shop/${categoryName}`)}
       >
         <h2>{categoryName}</h2>

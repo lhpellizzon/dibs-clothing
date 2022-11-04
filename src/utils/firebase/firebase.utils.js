@@ -5,6 +5,7 @@ import {
   signInWithRedirect,
   signInWithPopup,
   GoogleAuthProvider,
+  FacebookAuthProvider,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
@@ -22,14 +23,23 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-//Google interface and how user will log in
-const provider = new GoogleAuthProvider();
-provider.setCustomParameters({
+export const auth = getAuth();
+
+/*Google provider interface and how user will log in */
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 
-export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
+export const signInWithGooglePopup = () =>
+  signInWithPopup(auth, googleProvider);
+
+/*Facebook provider interface and how user will log in */
+/*Requires Authentication from meta for developers facebook */
+// const facebookProvider = new FacebookAuthProvider();
+
+// export const signInWithFacebookPopup = () =>
+//   signInWithPopup(auth, facebookProvider);
 
 export const db = getFirestore();
 

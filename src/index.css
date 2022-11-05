@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply bg-amber-50;
+}
+
 .nav-container {
   @apply container flex justify-between px-10 pt-10 pb-5 mx-auto border-b-2 border-black min-w-full md:min-w-max;
 

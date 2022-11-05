@@ -57,7 +57,6 @@ export const createUserDocumentFromAuth = async (userAuth) => {
       toast.success("Welcome! Your Account Was Created.");
     } catch (error) {
       toast.error("Error while creating your account");
-      console.log(error);
     }
   }
   /*Return userReference*/

@@ -8,6 +8,7 @@ import Checkout from "./pages/Checkout";
 import { Routes, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SignUp from "./pages/SignUp";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path=":categoryName" element={<Category />} />
           </Route>
           <Route path="login" element={<SignIn />} />
+          <Route path="signup" element={<SignUp />} />
           <Route path="contact" element={<Contact />} />
           <Route path="checkout" element={<Checkout />} />
         </Route>

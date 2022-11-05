@@ -39,8 +39,6 @@ function SignIn() {
     e.preventDefault();
   };
 
-  console.log(form);
-
   const { email, password } = form;
   return (
     <div>

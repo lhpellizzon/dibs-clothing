@@ -2,8 +2,11 @@ import { useState } from "react";
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
 const SignUp = () => {
+  const [checkPassword, setCheckPassword] = useState(false);
+  const [checkPassword2, setCheckPassword2] = useState(false);
   const [form, setForm] = useState({
     userName: "",
     email: "",
@@ -55,6 +58,7 @@ const SignUp = () => {
                   required
                 />
               </div>
+
               <div className="flex flex-col gap-2 min-w-full mb-6">
                 <label htmlFor="email" className="text-amber-50">
                   Enter Email
@@ -70,36 +74,56 @@ const SignUp = () => {
                   required
                 />
               </div>
+
               <div className="flex flex-col gap-2 min-w-full mb-6">
                 <label htmlFor="password" className="text-amber-50">
                   Enter Password
                 </label>
-                <input
-                  className="p-2 w-full rounded-md border-black border-x border-y"
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={password}
-                  placeholder="Password..."
-                  onChange={handleOnChange}
-                  required
-                />
+                <div className="relative">
+                  <input
+                    className="p-2 w-full rounded-md border-black border-x border-y"
+                    type={checkPassword ? "text" : "password"}
+                    name="password"
+                    id="password"
+                    value={password}
+                    placeholder="Password..."
+                    onChange={handleOnChange}
+                    required
+                  />
+                  <div
+                    className="absolute text-xl top-3 right-3 hover:cursor-pointer"
+                    onClick={() => setCheckPassword((prev) => !prev)}
+                  >
+                    {" "}
+                    {checkPassword ? <BsEyeSlashFill /> : <BsEyeFill />}
+                  </div>
+                </div>
               </div>
               <div className="flex flex-col gap-2 min-w-full mb-6">
-                <label htmlFor="password2" className="text-amber-50">
+                <label htmlFor="password" className="text-amber-50">
                   Confirm Password
                 </label>
-                <input
-                  className="p-2 w-full rounded-md border-black border-x border-y"
-                  type="password"
-                  name="password2"
-                  id="password2"
-                  value={password2}
-                  placeholder="Password..."
-                  onChange={handleOnChange}
-                  required
-                />
+                <div className="relative">
+                  <input
+                    className="p-2 w-full rounded-md border-black border-x border-y"
+                    type={checkPassword2 ? "text" : "password"}
+                    name="password2"
+                    id="password2"
+                    value={password2}
+                    placeholder="Confirm..."
+                    onChange={handleOnChange}
+                    required
+                  />
+                  <div
+                    className="absolute text-xl top-3 right-3 hover:cursor-pointer"
+                    onClick={() => setCheckPassword2((prev) => !prev)}
+                  >
+                    {" "}
+                    {checkPassword2 ? <BsEyeSlashFill /> : <BsEyeFill />}
+                  </div>
+                </div>
               </div>
+
               <input
                 className="min-w-full mt-4 mb-2 rounded-md bg-amber-50 font-semibold text-slate-900 uppercase py-4 hover:cursor-pointer hover:bg-slate-200 active:scale-95"
                 type="submit"

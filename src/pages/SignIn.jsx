@@ -73,6 +73,7 @@ function SignIn() {
                   value={email}
                   placeholder="Email..."
                   onChange={handleOnChange}
+                  required
                 />
               </div>
               <div className="flex flex-col gap-2 min-w-full mb-6">
@@ -87,6 +88,7 @@ function SignIn() {
                   value={password}
                   placeholder="Password..."
                   onChange={handleOnChange}
+                  required
                 />
               </div>
               <input

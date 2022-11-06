@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 
@@ -13,6 +13,7 @@ const SignUp = () => {
     password: "",
     password2: "",
   });
+  const navigate = useNavigate();
 
   const { userName, email, password, password2 } = form;
 
@@ -30,6 +31,8 @@ const SignUp = () => {
       toast.error("Make sure your password matches");
       return;
     }
+
+    navigate("/");
   };
 
   return (

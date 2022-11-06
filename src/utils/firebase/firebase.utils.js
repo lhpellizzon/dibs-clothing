@@ -38,41 +38,39 @@ export const db = getFirestore();
 
 /* Auth user with gmail */
 export const createUserDocumentFromAuth = async (userAuth) => {
-  /* Create a user doc on 'users' collection on firebase*/
-  const userDocRef = doc(db, "users", userAuth.uid);
-
-  /* Create a snapShot of the document to check on firebase if exists the userDocRef*/
-  const userSnapshot = await getDoc(userDocRef);
-
-  /*Create user if does not exist on database*/
-  if (!userSnapshot.exists()) {
-    const { displayName, email } = userAuth;
-
-    try {
-      await setDoc(userDocRef, {
-        displayName,
-        email,
-        createdAt: new Date(),
-      });
-
-      toast.success("Welcome! Your Account Was Created.");
-    } catch (error) {
-      toast.error("Error while creating your account");
-    }
-  }
-  /*Return userReference*/
-  return userDocRef;
+  createUserOnCollection(userAuth);
 };
 
-/* Auth user with email and passwoed */
+/* Auth user with email and password */
 export const createUserFromEmail = async (userDetails) => {
   const { email, password } = userDetails;
 
   try {
     const createUser = await createUserWithEmailAndPassword(auth, email, password);
     const { user } = await createUser;
-    return user;
+    await createUserOnCollection({ ...userDetails, uid: user.uid });
   } catch (error) {
     return error.code;
+  }
+};
+
+export const createUserOnCollection = async ({ displayName, email, uid }) => {
+  /* Create a user doc reference*/
+  const userDocRef = doc(db, "users", uid);
+
+  /* Create a snapShot of the document to check on firebase if exists the userDocRef*/
+  const userSnapShot = await getDoc(userDocRef);
+
+  /*Create user if does not exist on database*/
+  if (!userSnapShot.exists()) {
+    try {
+      await setDoc(userDocRef, {
+        displayName,
+        email,
+        createdAt: new Date(),
+      });
+    } catch (error) {
+      return error.code;
+    }
   }
 };

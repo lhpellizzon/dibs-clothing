@@ -9,14 +9,14 @@ const SignUp = () => {
   const [checkPassword, setCheckPassword] = useState(false);
   const [checkPassword2, setCheckPassword2] = useState(false);
   const [form, setForm] = useState({
-    userName: "",
+    displayName: "",
     email: "",
     password: "",
     password2: "",
   });
   const navigate = useNavigate();
 
-  const { userName, email, password, password2 } = form;
+  const { displayName, email, password, password2 } = form;
 
   const handleOnChange = (e) => {
     setForm((prev) => ({
@@ -28,16 +28,16 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    /*Check Password length and checker */
     if (password.length < 6) {
       toast.error("Password needs to be at least 6 characters");
       return;
     }
-
     if (password !== password2) {
       toast.error("Make sure your password matches");
       return;
     }
-
+    /* Try to create user on auth and db */
     const response = await createUserFromEmail(form);
 
     if (response === "auth/email-already-in-use") {
@@ -60,15 +60,15 @@ const SignUp = () => {
               <h1 className="text-3xl font-bold  mb-3 w-full text-center py-6 text-amber-50">Create Account</h1>
 
               <div className="flex flex-col gap-2 min-w-full mb-6">
-                <label htmlFor="userName" className="text-amber-50">
+                <label htmlFor="displayName" className="text-amber-50">
                   Name
                 </label>
                 <input
                   className="p-2 w-full rounded-md border-black border-x border-y"
                   type="text"
-                  name="userName"
-                  id="userName"
-                  value={userName}
+                  name="displayName"
+                  id="displayName"
+                  value={displayName}
                   placeholder="Name..."
                   onChange={handleOnChange}
                   required

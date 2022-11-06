@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
+import { createUserFromEmail } from "../utils/firebase/firebase.utils";
 
 const SignUp = () => {
   const [checkPassword, setCheckPassword] = useState(false);
@@ -24,7 +25,7 @@ const SignUp = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (password !== password2) {
@@ -32,7 +33,9 @@ const SignUp = () => {
       return;
     }
 
-    navigate("/");
+    const response = await createUserFromEmail(form);
+
+    console.log(response);
   };
 
   return (

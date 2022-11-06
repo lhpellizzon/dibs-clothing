@@ -1,6 +1,6 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 
@@ -36,6 +36,7 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 
 export const db = getFirestore();
 
+/* Auth user with gmail */
 export const createUserDocumentFromAuth = async (userAuth) => {
   /* Create a user doc on 'users' collection on firebase*/
   const userDocRef = doc(db, "users", userAuth.uid);
@@ -61,4 +62,14 @@ export const createUserDocumentFromAuth = async (userAuth) => {
   }
   /*Return userReference*/
   return userDocRef;
+};
+
+/* Auth user with email and passwoed */
+export const createUserFromEmail = async (userDetails) => {
+  const { email, password } = userDetails;
+
+  const createUser = await createUserWithEmailAndPassword(auth, email, password);
+  const { user } = await createUser;
+
+  return user;
 };

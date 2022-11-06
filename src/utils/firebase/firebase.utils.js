@@ -68,8 +68,11 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 export const createUserFromEmail = async (userDetails) => {
   const { email, password } = userDetails;
 
-  const createUser = await createUserWithEmailAndPassword(auth, email, password);
-  const { user } = await createUser;
-
-  return user;
+  try {
+    const createUser = await createUserWithEmailAndPassword(auth, email, password);
+    const { user } = await createUser;
+    return user;
+  } catch (error) {
+    return error.code;
+  }
 };

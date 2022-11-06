@@ -28,6 +28,11 @@ const SignUp = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (password.length < 6) {
+      toast.error("Password needs to be at least 6 characters");
+      return;
+    }
+
     if (password !== password2) {
       toast.error("Make sure your password matches");
       return;
@@ -35,7 +40,12 @@ const SignUp = () => {
 
     const response = await createUserFromEmail(form);
 
-    console.log(response);
+    if (response === "auth/email-already-in-use") {
+      toast.error("Email already in use!");
+    } else {
+      toast.success("Welcome, your account has been created!");
+      navigate("/");
+    }
   };
 
   return (

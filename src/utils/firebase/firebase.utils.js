@@ -1,6 +1,14 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  updateProfile,
+} from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
 
@@ -19,14 +27,6 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth();
 
-/*Google provider interface and how user will log in */
-const googleProvider = new GoogleAuthProvider();
-googleProvider.setCustomParameters({
-  prompt: "select_account",
-});
-
-export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
-
 /*Facebook provider interface and how user will log in */
 /*Requires Authentication from meta for developers facebook */
 // const facebookProvider = new FacebookAuthProvider();
@@ -36,41 +36,62 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 
 export const db = getFirestore();
 
-/* Auth user with gmail */
-export const createUserDocumentFromAuth = async (userAuth) => {
-  createUserOnCollection(userAuth);
-};
+/*Google provider interface and how user will log in */
+const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
+  prompt: "select_account",
+});
 
-/* Auth user with email and password */
-export const createUserFromEmail = async (userDetails) => {
-  const { email, password } = userDetails;
+/* Sign in with gmail */
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 
-  try {
-    const createUser = await createUserWithEmailAndPassword(auth, email, password);
-    const { user } = await createUser;
-    await createUserOnCollection({ ...userDetails, uid: user.uid });
-  } catch (error) {
-    return error.code;
-  }
-};
-
-export const createUserOnCollection = async ({ displayName, email, uid }) => {
+/* Create User Doc on DB */
+export const createUserDocumentFromAuth = async (userAuth, additionalDetails = {}) => {
   /* Create a user doc reference*/
-  const userDocRef = doc(db, "users", uid);
+  const userDocRef = doc(db, "users", userAuth.uid);
 
   /* Create a snapShot of the document to check on firebase if exists the userDocRef*/
   const userSnapShot = await getDoc(userDocRef);
 
   /*Create user if does not exist on database*/
   if (!userSnapShot.exists()) {
+    const { displayName, email } = userAuth;
+
     try {
       await setDoc(userDocRef, {
         displayName,
         email,
         createdAt: new Date(),
+        ...additionalDetails,
       });
     } catch (error) {
-      return error.code;
+      throw error;
     }
+  }
+};
+
+/* Auth user with email and password */
+export const createAuthUserFromEmail = async (userDetails) => {
+  const { email, password, displayName } = userDetails;
+
+  try {
+    const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
+    updateProfile(auth.currentUser, {
+      displayName,
+    });
+    return userCredentials;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const signInUserWithEmailAndPassword = async (userDetails) => {
+  const { email, password } = userDetails;
+
+  try {
+    const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+    return userCredentials;
+  } catch (error) {
+    throw error;
   }
 };

@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { signInWithGooglePopup, createUserDocumentFromAuth } from "../utils/firebase/firebase.utils";
+import {
+  signInWithGooglePopup,
+  createUserDocumentFromAuth,
+  signInUserWithEmailAndPassword,
+  auth,
+  authObserver,
+} from "../utils/firebase/firebase.utils";
 import { FcGoogle } from "react-icons/fc";
 import { Helmet } from "react-helmet";
+import { toast } from "react-toastify";
 
 function SignIn() {
   const navigate = useNavigate();
@@ -11,23 +18,14 @@ function SignIn() {
     password: "",
   });
 
-  const googleLogin = async () => {
-    try {
-      const { user } = await signInWithGooglePopup();
-
-      const userDocRef = await createUserDocumentFromAuth(user);
-      navigate("/");
-    } catch (error) {
-      toast.error("Error trying to login.");
-    }
-  };
-
   /* Log with Facebook Provider requires APP Id from faceboook for developers */
   // const facebookLogin = async () => {
   //   const { user } = await signInWithFacebookPopup();
 
   //   const userDocRef = await createUserDocumentFromAuth(user);
   // };
+
+  /* Set form with userDetails */
   const handleOnChange = (e) => {
     setForm((prev) => ({
       ...prev,
@@ -35,8 +33,28 @@ function SignIn() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  /* Sign in with goggle button */
+  const googleLogin = async () => {
+    try {
+      const { user } = await signInWithGooglePopup();
+
+      await createUserDocumentFromAuth(user);
+    } catch (error) {
+      toast.error("Error trying to login using google account");
+    }
+  };
+
+  /* Sign In with Email and Password */
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    try {
+      const { user } = await signInUserWithEmailAndPassword(form);
+      if (user !== null) {
+        toast.success(`Welcome Back ${auth.currentUser.displayName}`);
+      }
+    } catch (error) {
+      toast.error("Your account email or password is incorrect. Please, try again.");
+    }
   };
 
   const { email, password } = form;
@@ -49,9 +67,12 @@ function SignIn() {
         <div className="container mx-auto mt-16 flex items-center justify-center">
           <div className="w-96 mx-2 rounded-lg  bg-slate-900">
             <form className="flex flex-col items-center px-8 py-4" onSubmit={handleSubmit}>
-              <h1 className="text-3xl font-bold  mb-3 w-full text-center py-6 text-amber-50">Sign In</h1>
+              <h1 className="text-3xl font-bold  mb-3 w-full text-center py-6 text-amber-50">
+                Sign In
+              </h1>
               <div className="mb-6 min-w-full">
                 <button
+                  type="button"
                   className="p-3 w-full rounded-md flex items-center justify-center gap-2 text-slate-900 bg-slate-300 hover:bg-slate-200 active:scale-95"
                   onClick={googleLogin}
                 >

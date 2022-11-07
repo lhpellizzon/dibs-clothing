@@ -3,7 +3,10 @@ import { Helmet } from "react-helmet";
 import { useNavigate, Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
-import { createUserFromEmail } from "../utils/firebase/firebase.utils";
+import {
+  createAuthUserFromEmail,
+  createUserDocumentFromAuth,
+} from "../utils/firebase/firebase.utils";
 
 const SignUp = () => {
   const [checkPassword, setCheckPassword] = useState(false);
@@ -18,6 +21,7 @@ const SignUp = () => {
 
   const { displayName, email, password, password2 } = form;
 
+  /* Set form with userDetails accordingly*/
   const handleOnChange = (e) => {
     setForm((prev) => ({
       ...prev,
@@ -25,6 +29,7 @@ const SignUp = () => {
     }));
   };
 
+  /* When user submit form */
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -38,13 +43,17 @@ const SignUp = () => {
       return;
     }
     /* Try to create user on auth and db */
-    const response = await createUserFromEmail(form);
+    try {
+      const { user } = await createAuthUserFromEmail(form);
 
-    if (response === "auth/email-already-in-use") {
-      toast.error("Email already in use!");
-    } else {
+      await createUserDocumentFromAuth(user, { displayName });
       toast.success("Welcome, your account has been created!");
       navigate("/");
+    } catch (error) {
+      if (error.code === "auth/email-already-in-use") {
+        toast.error("Email already in use");
+        return;
+      }
     }
   };
 
@@ -57,7 +66,9 @@ const SignUp = () => {
         <div className="container mx-auto mt-16 flex items-center justify-center">
           <div className="w-96 mx-2 rounded-lg  bg-slate-900">
             <form className="flex flex-col items-center px-8 py-4" onSubmit={handleSubmit}>
-              <h1 className="text-3xl font-bold  mb-3 w-full text-center py-6 text-amber-50">Create Account</h1>
+              <h1 className="text-3xl font-bold  mb-3 w-full text-center py-6 text-amber-50">
+                Create Account
+              </h1>
 
               <div className="flex flex-col gap-2 min-w-full mb-6">
                 <label htmlFor="displayName" className="text-amber-50">

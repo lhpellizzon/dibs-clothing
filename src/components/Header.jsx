@@ -3,10 +3,9 @@ import { Outlet, Link } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
 import { UserContext } from "../context/GlobalState";
 import Crown from "../assets/imgs/crown.svg";
+import { signOutUser } from "../utils/firebase/firebase.utils";
 function Header() {
   const { currentUser } = useContext(UserContext);
-
-  console.log(currentUser);
 
   return (
     <>
@@ -25,7 +24,15 @@ function Header() {
             <li>
               <Link to="/contact">Contact</Link>
             </li>
-            <li>{currentUser ? <Link to="/">Sign Out</Link> : <Link to="/login">Sign In</Link>}</li>
+            <li>
+              {currentUser ? (
+                <Link to="/login" onClick={signOutUser}>
+                  Sign Out
+                </Link>
+              ) : (
+                <Link to="/login">Sign In</Link>
+              )}
+            </li>
             <li>
               <Link to="/checkout">
                 <div className="relative">

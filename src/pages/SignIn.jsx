@@ -18,8 +18,6 @@ function SignIn() {
     password: "",
   });
 
-  const { currentUser, setCurrentUser } = useContext(UserContext);
-
   /* Log with Facebook Provider requires APP Id from faceboook for developers */
   // const facebookLogin = async () => {
   //   const { user } = await signInWithFacebookPopup();
@@ -39,6 +37,8 @@ function SignIn() {
   const googleLogin = async () => {
     try {
       await signInWithGooglePopup();
+      toast.success(`Login Success`);
+      navigate("/");
     } catch (error) {
       toast.error("Error trying to login using google account");
     }
@@ -49,11 +49,13 @@ function SignIn() {
     e.preventDefault();
     try {
       const { user } = await signInUserWithEmailAndPassword(form);
+
       if (user !== null) {
-        toast.success(`Welcome Back ${auth.currentUser.displayName}`);
+        toast.success(`Welcome Back ${user.displayName}`);
+        navigate("/");
       }
     } catch (error) {
-      toast.error("Your account email or password is incorrect. Please, try again.");
+      toast.error("Your email or password is incorrect. Please, try again.");
     }
   };
 

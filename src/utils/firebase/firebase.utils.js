@@ -8,6 +8,7 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   updateProfile,
+  signOut,
 } from "firebase/auth";
 import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
@@ -97,3 +98,5 @@ export const signInUserWithEmailAndPassword = async (userDetails) => {
 };
 
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
+
+export const signOutUser = async () => await auth.signOut();

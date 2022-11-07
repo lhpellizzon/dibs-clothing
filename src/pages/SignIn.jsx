@@ -5,7 +5,6 @@ import {
   createUserDocumentFromAuth,
   signInUserWithEmailAndPassword,
   auth,
-  authObserver,
 } from "../utils/firebase/firebase.utils";
 import { FcGoogle } from "react-icons/fc";
 import { Helmet } from "react-helmet";

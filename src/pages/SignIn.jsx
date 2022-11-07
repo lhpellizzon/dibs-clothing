@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
   signInWithGooglePopup,
@@ -6,6 +6,7 @@ import {
   signInUserWithEmailAndPassword,
   auth,
 } from "../utils/firebase/firebase.utils";
+import { UserContext } from "../context/GlobalState";
 import { FcGoogle } from "react-icons/fc";
 import { Helmet } from "react-helmet";
 import { toast } from "react-toastify";
@@ -16,6 +17,8 @@ function SignIn() {
     email: "",
     password: "",
   });
+
+  const { currentUser, setCurrentUser } = useContext(UserContext);
 
   /* Log with Facebook Provider requires APP Id from faceboook for developers */
   // const facebookLogin = async () => {
@@ -35,9 +38,7 @@ function SignIn() {
   /* Sign in with goggle button */
   const googleLogin = async () => {
     try {
-      const { user } = await signInWithGooglePopup();
-
-      await createUserDocumentFromAuth(user);
+      await signInWithGooglePopup();
     } catch (error) {
       toast.error("Error trying to login using google account");
     }

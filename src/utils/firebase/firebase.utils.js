@@ -95,3 +95,5 @@ export const signInUserWithEmailAndPassword = async (userDetails) => {
     throw error;
   }
 };
+
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);

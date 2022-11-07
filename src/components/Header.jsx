@@ -1,7 +1,13 @@
+import { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
+import { UserContext } from "../context/GlobalState";
 import Crown from "../assets/imgs/crown.svg";
 function Header() {
+  const { currentUser } = useContext(UserContext);
+
+  console.log(currentUser);
+
   return (
     <>
       <nav className="nav-container">
@@ -19,9 +25,7 @@ function Header() {
             <li>
               <Link to="/contact">Contact</Link>
             </li>
-            <li>
-              <Link to="/login">Sign In</Link>
-            </li>
+            <li>{currentUser ? <Link to="/">Sign Out</Link> : <Link to="/login">Sign In</Link>}</li>
             <li>
               <Link to="/checkout">
                 <div className="relative">

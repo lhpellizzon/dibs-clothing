@@ -1,15 +1,23 @@
+import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import SHOP_DATA from "../shop-data.json";
+import { ProductContext } from "../context/ProductContext";
+import ProductItemList from "../components/ProductItemList";
 
 function Shop() {
+  const { products } = useContext(ProductContext);
+
   return (
     <>
       <Helmet>
         <title>Categories | Dibs</title>
       </Helmet>
-      <h1>shop</h1>
-      <Outlet />
+      <div className="container mx-auto flex  gap-2 flex-wrap justify-center">
+        {products.map((product) => (
+          <ProductItemList key={product.id} product={product} />
+        ))}
+        <Outlet />
+      </div>
     </>
   );
 }

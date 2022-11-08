@@ -46,7 +46,19 @@ googleProvider.setCustomParameters({
 /* Sign in with gmail */
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 
-/* Create User Doc on DB */
+/* Sign In User with email and password*/
+export const signInUserWithEmailAndPassword = async (userDetails) => {
+  const { email, password } = userDetails;
+
+  try {
+    const userCredentials = await signInWithEmailAndPassword(auth, email, password);
+    return userCredentials;
+  } catch (error) {
+    throw error;
+  }
+};
+
+/* Create User Doc on Firestore */
 export const createUserDocumentFromAuth = async (userAuth, additionalDetails = {}) => {
   /* Create a user doc reference*/
   const userDocRef = doc(db, "users", userAuth.uid);
@@ -86,17 +98,8 @@ export const createAuthUserFromEmail = async (userDetails) => {
   }
 };
 
-export const signInUserWithEmailAndPassword = async (userDetails) => {
-  const { email, password } = userDetails;
-
-  try {
-    const userCredentials = await signInWithEmailAndPassword(auth, email, password);
-    return userCredentials;
-  } catch (error) {
-    throw error;
-  }
-};
-
+/*Auth Status Listener*/
 export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
 
+/*Sign Out user from auth and app */
 export const signOutUser = async () => await auth.signOut();

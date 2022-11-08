@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import SHOP_DATA from "../shop-data.json";
 
 function Shop() {
   return (

@@ -34,9 +34,7 @@ function Header() {
               )}
             </li>
             <li>
-              <Link to="/checkout">
-                <Cart />
-              </Link>
+              <Cart />
             </li>
           </ul>
         </div>

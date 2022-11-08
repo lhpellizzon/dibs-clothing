@@ -52,3 +52,17 @@ body {
     @apply md:h-80;
   }
 }
+
+/*Product List */
+
+.productList-container {
+  @apply container mx-auto grid grid-cols-2 px-4 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5;
+
+  .productList {
+    @apply flex flex-col;
+
+    img {
+      @apply w-60 h-64 sm:w-72 sm:h-80 rounded;
+    }
+  }
+}

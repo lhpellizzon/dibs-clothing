@@ -12,7 +12,7 @@ function Shop() {
       <Helmet>
         <title>Categories | Dibs</title>
       </Helmet>
-      <div className="container mx-auto flex  gap-2 flex-wrap justify-center">
+      <div className="productList-container">
         {products.map((product) => (
           <ProductItemList key={product.id} product={product} />
         ))}

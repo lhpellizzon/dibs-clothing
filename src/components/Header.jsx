@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { Outlet, Link } from "react-router-dom";
-import { BsBag } from "react-icons/bs";
 import { UserContext } from "../context/GlobalState";
 import Crown from "../assets/imgs/crown.svg";
 import { signOutUser } from "../utils/firebase/firebase.utils";
+import Cart from "./Cart";
 function Header() {
   const { currentUser } = useContext(UserContext);
 
@@ -35,12 +35,7 @@ function Header() {
             </li>
             <li>
               <Link to="/checkout">
-                <div className="relative">
-                  <BsBag className="text-3xl" />
-                  <p className="absolute text-sm font-bold" style={{ left: "11px", top: "8px" }}>
-                    1
-                  </p>
-                </div>
+                <Cart />
               </Link>
             </li>
           </ul>

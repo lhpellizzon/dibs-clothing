@@ -1,5 +1,6 @@
 const ProductItemList = ({ product }) => {
   const { name, price, imageUrl } = product;
+
   return (
     <div className="productList">
       <div className="productList-imageBody">

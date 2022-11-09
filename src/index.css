@@ -64,7 +64,7 @@ body {
     .productList-imageBody {
       @apply relative after:absolute after:content-[""] after:w-full after:h-full after:bg-black after:opacity-20 after:top-0 after:left-0 hover:after:bg-gray-600;
       .productList-image {
-        @apply w-60 h-64 sm:w-72 sm:h-80 rounded;
+        @apply w-60 h-72 sm:w-72 rounded;
       }
     }
 

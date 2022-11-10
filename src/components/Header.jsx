@@ -12,7 +12,8 @@ function Header() {
 
   useEffect(() => {
     const closeDropDown = (e) => {
-      if (e.target.parentElement !== menuRef.current && e.target !== menuRef.current) {
+      console.log(e.target);
+      if (!menuRef.current.contains(e.target)) {
         setIsMenuOpen(false);
       }
     };
@@ -53,9 +54,8 @@ function Header() {
           </div>
 
           {/* Button */}
-          <div className="relative flex gap-4 items-center sm:hidden ">
+          <div ref={menuRef} className="relative flex gap-4 items-center sm:hidden ">
             <button
-              ref={menuRef}
               id="menu-btn"
               className={`${isMenuOpen ? "open" : ""} block hamburger px-3 py-3`}
               onClick={() => setIsMenuOpen((prev) => !prev)}

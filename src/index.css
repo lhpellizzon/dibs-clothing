@@ -77,3 +77,32 @@ body {
     }
   }
 }
+
+.hamburger {
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  transition: all 0.25s;
+  position: relative;
+  margin-right: 20px;
+  margin-top: 5px;
+}
+
+.hamburger-top,
+.hamburger-mid,
+.hamburger-bot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 24px;
+  height: 2px;
+  background-color: black;
+  transform: rotate(0);
+  transition: all 0.5s;
+}
+.hamburger-mid {
+  transform: translateY(7px);
+}
+.hamburger-bot {
+  transform: translateY(14px);
+}

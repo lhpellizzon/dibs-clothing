@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
+import useComponentVisible from "../hooks/useComponentVisible";
 
 const Cart = () => {
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen);
   return (
     <>
       <div

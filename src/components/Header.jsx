@@ -12,15 +12,14 @@ function Header() {
 
   useEffect(() => {
     const closeDropDown = (e) => {
-      console.log(e.target);
-      if (!menuRef.current.contains(e.target)) {
+      if (menuRef.current && !menuRef.current.contains(e.target)) {
         setIsMenuOpen(false);
       }
     };
 
-    document.body.addEventListener("click", closeDropDown);
+    document.addEventListener("click", closeDropDown, { capture: true });
 
-    return () => document.body.removeEventListener("click", closeDropDown);
+    return () => document.removeEventListener("click", closeDropDown, { capture: true });
   }, []);
 
   return (

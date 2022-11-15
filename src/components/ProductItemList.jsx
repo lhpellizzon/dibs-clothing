@@ -1,18 +1,14 @@
-const ProductItemList = ({ product }) => {
-  const { name, price, imageUrl } = product;
+import { useContext } from "react";
+import { ProductContext } from "../context/ProductContext";
+import ProductItem from "./ProductItem";
 
+const ProductItemList = () => {
+  const { products } = useContext(ProductContext);
   return (
-    <div className="productList">
-      <div className="productList-imageBody">
-        <img src={imageUrl} alt="" className="productList-image" />
-      </div>
-      <div className="productList-details">
-        <h1 className="productList-name">{name}</h1>
-        <p className="productList-price">{price}€</p>
-      </div>
-      <button type="button" className="productList-button">
-        ADD TO CART
-      </button>
+    <div className="productList-container">
+      {products.map((product) => (
+        <ProductItem key={product.id} product={product} />
+      ))}
     </div>
   );
 };

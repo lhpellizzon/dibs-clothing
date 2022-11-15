@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef, useContext } from "react";
-
 import { CartContext } from "../context/CartContext";
 import { Link } from "react-router-dom";
 import { BsBag } from "react-icons/bs";
@@ -21,15 +20,18 @@ const Cart = () => {
     return () => document.removeEventListener("click", closeDropDown, { capture: true });
   }, []);
 
-  const { cartItems, setCartItems } = useContext(CartContext);
-  console.log(cartItems);
+  const { cartItems } = useContext(CartContext);
+
+  // const itemsQuantity = cartItems
+  //   .map((item) => item.quantity)
+  //   .reduce((prev, curr) => prev + curr, 0);
 
   return (
     <div ref={cartRef} className="relative cursor-pointer">
       <button onClick={() => setIsOpen((prev) => !prev)}>
         <BsBag className="text-3xl" />
         <p className="absolute text-sm font-bold" style={{ left: "11px", top: "8px" }}>
-          {cartItems.length}
+          {/* {itemsQuantity} */}
         </p>
       </button>
 

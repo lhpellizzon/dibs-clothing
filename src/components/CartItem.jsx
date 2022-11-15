@@ -1,9 +1,11 @@
 const CartItem = ({ cartItem }) => {
-  const { name, quantity, price } = cartItem;
+  const { name, quantity, price, imageUrl } = cartItem;
 
   return (
     <li className="flex my-3 gap-3 items-center">
-      <div className="bg-black h-20 w-16"></div>
+      <div className="h-20 w-16">
+        <img src={imageUrl} alt={name} className="rounded h-full w-full" />
+      </div>
       <div>
         <h2>{name}</h2>
         <span>

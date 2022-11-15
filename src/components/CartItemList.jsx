@@ -3,7 +3,7 @@ import { CartContext } from "../context/CartContext";
 import CartItem from "./CartItem";
 
 const CartItemList = () => {
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { cartItems } = useContext(CartContext);
 
   return (
     <div className="w-full h-72 overflow-scroll">

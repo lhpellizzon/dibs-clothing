@@ -20,19 +20,15 @@ const Cart = () => {
     return () => document.removeEventListener("click", closeDropDown, { capture: true });
   }, []);
 
-  const { cartItems } = useContext(CartContext);
-
-  // const itemsQuantity = cartItems
-  //   .map((item) => item.quantity)
-  //   .reduce((prev, curr) => prev + curr, 0);
+  const { quantityItems } = useContext(CartContext);
 
   return (
     <div ref={cartRef} className="relative cursor-pointer">
       <button onClick={() => setIsOpen((prev) => !prev)}>
         <BsBag className="text-3xl" />
-        <p className="absolute text-sm font-bold" style={{ left: "11px", top: "8px" }}>
-          {/* {itemsQuantity} */}
-        </p>
+        <div className="absolute top-0 w-full h-full flex items-center">
+          <p className="text-sm font-bold w-full">{quantityItems}</p>
+        </div>
       </button>
 
       {isOpen && (

@@ -5,21 +5,26 @@ import CheckoutItem from "./CheckoutItem";
 const CheckoutContainer = () => {
   const { cartItems } = useContext(CartContext);
   const total = cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0);
-  console.log(total);
+
   return (
     <section id="checkout">
       <div className="container mx-auto flex flex-col items-center text-center py-4">
         <h1 className="text-3xl font-bold uppercase p-4">Checkout</h1>
-        <div className="flex flex-col space-y-5 w-full md:max-w-2xl">
+        <div className="flex flex-col space-y-5 px-4 w-full md:max-w-2xl py-6">
           <ul className="flex flex-col gap-3">
             {cartItems.map((item) => (
               <CheckoutItem key={item.id} item={item} />
             ))}
           </ul>
-          <div className="">
-            <p>Total</p>
-            <span>{total}</span>
+          <hr />
+          <div className="flex justify-between pr-6 uppercase font-bold">
+            <p className="text-2xl pl-10 ">Total</p>
+            <span className="text-2xl">{total}€</span>
           </div>
+
+          <button className="py-3 bg-slate-900 text-amber-50 rounded mx-auto w-[75%] active:scale-[99%]">
+            Go to Payment
+          </button>
         </div>
       </div>
     </section>

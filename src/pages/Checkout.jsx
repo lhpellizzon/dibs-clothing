@@ -1,15 +1,13 @@
-import { useContext } from "react";
 import { Helmet } from "react-helmet";
-import { CartContext } from "../context/CartContext";
+import CheckoutContainer from "../components/CheckoutContainer";
 
 function Checkout() {
-  const cart = useContext(CartContext);
-  console.log(cart);
   return (
     <>
       <Helmet>
         <title>Safe Checkout | Dibs</title>
       </Helmet>
+      <CheckoutContainer />
     </>
   );
 }

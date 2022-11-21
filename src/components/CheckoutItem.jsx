@@ -1,6 +1,12 @@
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const CheckoutItem = ({ item }) => {
+  const { addToCart, cartItems } = useContext(CartContext);
+  const addQuantity = () => addToCart(item);
+  console.log(cartItems);
+
   return (
     <li className="flex gap-4 bg-slate-900 rounded pr-6 text-amber-50 font-bold">
       <div>
@@ -18,7 +24,7 @@ const CheckoutItem = ({ item }) => {
               <FaChevronLeft />
             </button>
             <p className="text-xl"> {item.quantity}</p>
-            <button className="active:scale-75">
+            <button className="active:scale-75" onClick={addQuantity}>
               <FaChevronRight />
             </button>
           </div>

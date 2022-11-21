@@ -19,6 +19,7 @@ export const CartContext = createContext({
   cartItems: [],
   setCartItems: () => null,
   addToCart: () => {},
+  removeFromCart: () => {},
   quantityItems: null,
   setQuantityItems: () => {},
   totalPrice: 0,

@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 
+/* Helper Functions to manage State on Cart Context */
 const addCartItem = (cartItems, productToAdd) => {
   const isCartItem = cartItems.find((item) => item.id === productToAdd.id);
 

@@ -1,22 +1,22 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
 const CheckoutItem = ({ item }) => {
   const { addToCart, cartItems, removeQuantityFromCart, removeProduct } = useContext(CartContext);
   const addQuantity = () => addToCart(item);
   const removeQuantity = () => removeQuantityFromCart(item);
-  console.log(cartItems);
 
   return (
-    <li className="flex gap-4 bg-slate-900 rounded pr-6 text-amber-50 font-bold">
+    <li className="flex gap-2 bg-slate-900 rounded pr-2 sm:pr-6 sm:gap-4 text-amber-50 font-bold">
       <div>
         <img src={item.imageUrl} alt={item.name} className="w-32 h-40 rounded" />
       </div>
-      <div className="flex flex-col justify-evenly flex-auto">
+      <div className="relative flex flex-col justify-evenly flex-auto">
         <div className="flex justify-between">
-          <h2 className="text-2xl">{item.name}</h2>
-          <span className="text-xl">{item.price}€</span>
+          <h2 className="text-xl">{item.name}</h2>
+          <span className="text-md sm:text-xl">{item.price}€</span>
         </div>
         <div className="flex justify-between">
           <p className="text-sm">Quantity</p>
@@ -30,6 +30,7 @@ const CheckoutItem = ({ item }) => {
             </button>
           </div>
         </div>
+        <RiDeleteBin6Fill className="absolute bottom-2 text-2xl" />
       </div>
     </li>
   );

@@ -3,8 +3,9 @@ import { CartContext } from "../context/CartContext";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const CheckoutItem = ({ item }) => {
-  const { addToCart, cartItems } = useContext(CartContext);
+  const { addToCart, cartItems, removeQuantityFromCart, removeProduct } = useContext(CartContext);
   const addQuantity = () => addToCart(item);
+  const removeQuantity = () => removeQuantityFromCart(item);
   console.log(cartItems);
 
   return (
@@ -21,7 +22,7 @@ const CheckoutItem = ({ item }) => {
           <p className="text-sm">Quantity</p>
           <div className="flex items-center">
             <button className="active:scale-75">
-              <FaChevronLeft />
+              <FaChevronLeft onClick={removeQuantity} />
             </button>
             <p className="text-xl"> {item.quantity}</p>
             <button className="active:scale-75" onClick={addQuantity}>

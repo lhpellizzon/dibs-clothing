@@ -11,6 +11,10 @@ const addCartItem = (cartItems, productToAdd) => {
   return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
+const removeFromCart = (cartItems, productToRemove) => {
+  return `${productToRemove} removed`;
+};
+
 const calculateTotal = (cartItems) =>
   cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0);
 
@@ -41,7 +45,11 @@ export const CartProvider = ({ children }) => {
     setCartItems(addCartItem(cartItems, productToAdd));
   };
 
-  const value = { cartItems, setCartItems, addToCart, quantityItems, totalPrice };
+  const removeFromCart = (productToRemove) => {
+    setCartItems(removeCartItem(cartItems, productToRemove));
+  };
+
+  const value = { cartItems, setCartItems, addToCart, removeFromCart, quantityItems, totalPrice };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };

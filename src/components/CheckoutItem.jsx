@@ -8,9 +8,9 @@ const CheckoutItem = ({ item }) => {
   const { addToCart, removeQuantityFromCart, removeProduct } = useContext(CartContext);
   const addQuantity = () => addToCart(item);
   const removeQuantity = () => removeQuantityFromCart(item);
-  const removeItemFromBasket = async () => {
+  const removeItemFromBasket = () => {
     try {
-      await removeProduct(item);
+      removeProduct(item);
       toast.success(`${item.name} removed from basket`);
     } catch (error) {
       toast.error(`Could not delete ${item.name} from basket`);

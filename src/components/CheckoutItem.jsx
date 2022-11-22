@@ -9,11 +9,16 @@ const CheckoutItem = ({ item }) => {
   const addQuantity = () => addToCart(item);
   const removeQuantity = () => removeQuantityFromCart(item);
   const removeItemFromBasket = () => {
-    try {
-      removeProduct(item);
-      toast.success(`${item.name} removed from basket`);
-    } catch (error) {
-      toast.error(`Could not delete ${item.name} from basket`);
+    const confirmation = confirm("Are you sure you want to delete this item?");
+    if (confirmation) {
+      try {
+        removeProduct(item);
+        toast.success(`${item.name} removed from basket`);
+      } catch (error) {
+        toast.error(`Could not delete ${item.name} from basket`);
+      }
+    } else {
+      return;
     }
   };
 
@@ -39,7 +44,10 @@ const CheckoutItem = ({ item }) => {
             </button>
           </div>
         </div>
-        <button className="absolute bottom-2 text-2xl" onClick={removeItemFromBasket}>
+        <button
+          className="absolute bottom-2 text-2xl active:scale-95"
+          onClick={removeItemFromBasket}
+        >
           <RiDeleteBin6Fill />
         </button>
       </div>

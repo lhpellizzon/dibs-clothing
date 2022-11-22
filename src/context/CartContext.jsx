@@ -27,6 +27,11 @@ const deleteQuantityFromCart = (cartItems, productToRemove) => {
   }
 };
 
+const deleteItem = (cartItems, productToRemove) => {
+  const newBasket = cartItems.filter((item) => item.id !== productToRemove.id);
+  return [...newBasket];
+};
+
 const calculateTotal = (cartItems) =>
   cartItems.reduce((acc, item) => acc + item.quantity * item.price, 0);
 

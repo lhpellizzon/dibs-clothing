@@ -29,6 +29,7 @@ const deleteQuantityFromCart = (cartItems, productToRemove) => {
 
 const deleteItem = (cartItems, productToRemove) => {
   const newBasket = cartItems.filter((item) => item.id !== productToRemove.id);
+
   return [...newBasket];
 };
 
@@ -67,7 +68,9 @@ export const CartProvider = ({ children }) => {
     setCartItems(deleteQuantityFromCart(cartItems, productToRemove));
   };
 
-  const removeProduct = (product) => {};
+  const removeProduct = (productToRemove) => {
+    setCartItems(deleteItem(cartItems, productToRemove));
+  };
   const value = {
     cartItems,
     setCartItems,

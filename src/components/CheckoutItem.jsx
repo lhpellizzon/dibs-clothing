@@ -1,12 +1,21 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { toast } from "react-toastify";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 
 const CheckoutItem = ({ item }) => {
-  const { addToCart, cartItems, removeQuantityFromCart, removeProduct } = useContext(CartContext);
+  const { addToCart, removeQuantityFromCart, removeProduct } = useContext(CartContext);
   const addQuantity = () => addToCart(item);
   const removeQuantity = () => removeQuantityFromCart(item);
+  const removeItemFromBasket = async () => {
+    try {
+      await removeProduct(item);
+      toast.success(`${item.name} removed from basket`);
+    } catch (error) {
+      toast.error(`Could not delete ${item.name} from basket`);
+    }
+  };
 
   return (
     <li className="flex gap-2 bg-slate-900 rounded pr-2 sm:pr-6 sm:gap-4 text-amber-50 font-bold">
@@ -30,7 +39,9 @@ const CheckoutItem = ({ item }) => {
             </button>
           </div>
         </div>
-        <RiDeleteBin6Fill className="absolute bottom-2 text-2xl" />
+        <button className="absolute bottom-2 text-2xl" onClick={removeItemFromBasket}>
+          <RiDeleteBin6Fill />
+        </button>
       </div>
     </li>
   );

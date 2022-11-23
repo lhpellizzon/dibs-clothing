@@ -24,16 +24,16 @@ const CheckoutItem = ({ item }) => {
 
   return (
     <li className="flex gap-2 bg-slate-900 rounded pr-2 sm:pr-6 sm:gap-4 text-amber-50 font-bold">
-      <div>
-        <img src={item.imageUrl} alt={item.name} className="w-32 h-40 rounded" />
+      <div className="w-32 h-40 shrink-0 ">
+        <img src={item.imageUrl} alt={item.name} className="w-full  h-full rounded" />
       </div>
       <div className="relative flex flex-col justify-evenly flex-auto">
-        <div className="flex justify-between">
-          <h2 className="text-xl">{item.name}</h2>
-          <span className="text-md sm:text-xl">{item.price}€</span>
+        <div className="flex justify-between items-center">
+          <h2 className="text-md sm:text-xl">{item.name}</h2>
+          <span className="text-xl">{item.price}€</span>
         </div>
-        <div className="flex justify-between">
-          <p className="text-sm">Quantity</p>
+        <div className="flex justify-between items-center">
+          <p className="text-xs sm:text-sm">Quantity</p>
           <div className="flex items-center">
             <button className="active:scale-75">
               <FaChevronLeft onClick={removeQuantity} />
@@ -45,7 +45,7 @@ const CheckoutItem = ({ item }) => {
           </div>
         </div>
         <button
-          className="absolute bottom-2 text-2xl active:scale-95"
+          className="absolute bottom-2 text-xl sm:text-2xl active:scale-95"
           onClick={removeItemFromBasket}
         >
           <RiDeleteBin6Fill />

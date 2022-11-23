@@ -2,8 +2,9 @@ import { useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
 import ProductItem from "./ProductItem";
 
-const ProductItemList = () => {
-  const { products } = useContext(ProductContext);
+const ProductItemList = ({ products = [] }) => {
+  // const { products } = useContext(ProductContext);
+
   return (
     <div className="productList-container">
       {products.map((product) => (

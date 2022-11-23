@@ -13,8 +13,15 @@ const Category = () => {
       <Helmet>
         <title>{categoryName}</title>
       </Helmet>
-      <h1>{category.title}</h1>
-      <ProductItemList products={category.items} />
+      <section id={category.title}>
+        <h1 className="text-center text-slate-900 text-3xl font-bold uppercase p-4">
+          {category.title}
+        </h1>
+        <div className="container mx-auto pb-4">
+          <hr className="border" />
+        </div>
+        <ProductItemList products={category.items} />
+      </section>
     </>
   );
 };

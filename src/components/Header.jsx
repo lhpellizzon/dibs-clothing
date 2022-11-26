@@ -4,6 +4,7 @@ import { UserContext } from "../context/GlobalState";
 import Crown from "../assets/imgs/crown.svg";
 import { signOutUser } from "../utils/firebase/firebase.utils";
 import Cart from "./Cart";
+import { motion } from "framer-motion";
 
 function Header() {
   const { currentUser } = useContext(UserContext);
@@ -65,7 +66,11 @@ function Header() {
             </button>
             {/* Mobile menu */}
             {isMenuOpen && (
-              <div className="menu-mobile absolute top-10 right-0 bg-white border-black border-[1px] rounded py-2 z-30">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="menu-mobile absolute top-10 right-0 bg-white border-black border-[1px] rounded py-2 z-30"
+              >
                 <ul className="flex flex-col space-y-4 py-2 text-center">
                   <li className="border-b-black border-b-[1px] px-4 pb-3 uppercase">
                     <Link to="/shop">Shop</Link>
@@ -83,7 +88,7 @@ function Header() {
                     )}
                   </li>
                 </ul>
-              </div>
+              </motion.div>
             )}
           </div>
           <Cart />

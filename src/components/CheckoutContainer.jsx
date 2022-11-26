@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import CheckoutItem from "./CheckoutItem";
+import { motion, AnimatePresence } from "framer-motion";
 
 const CheckoutContainer = () => {
   const { cartItems } = useContext(CartContext);
@@ -12,9 +13,18 @@ const CheckoutContainer = () => {
         <h1 className="text-3xl font-bold uppercase p-4">Checkout</h1>
         <div className="flex flex-col space-y-5 px-4 w-full md:max-w-2xl py-6">
           <ul className="flex flex-col gap-3">
-            {cartItems.map((item) => (
-              <CheckoutItem key={item.id} item={item} />
-            ))}
+            <AnimatePresence>
+              {cartItems.map((item) => (
+                <motion.li
+                  key={item.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <CheckoutItem key={item.id} item={item} />
+                </motion.li>
+              ))}
+            </AnimatePresence>
           </ul>
           <hr />
           <div className="flex justify-between pr-6 uppercase font-bold">

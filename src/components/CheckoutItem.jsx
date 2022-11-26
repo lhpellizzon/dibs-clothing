@@ -23,7 +23,7 @@ const CheckoutItem = ({ item }) => {
   };
 
   return (
-    <li className="flex gap-2 bg-slate-900 rounded pr-2 sm:pr-6 sm:gap-4 text-amber-50 font-bold">
+    <div className="flex gap-2 bg-slate-900 rounded pr-2 sm:pr-6 sm:gap-4 text-amber-50 font-bold">
       <div className="w-32 h-40 shrink-0 ">
         <img src={item.imageUrl} alt={item.name} className="w-full  h-full rounded" />
       </div>
@@ -51,7 +51,7 @@ const CheckoutItem = ({ item }) => {
           <RiDeleteBin6Fill />
         </button>
       </div>
-    </li>
+    </div>
   );
 };
 

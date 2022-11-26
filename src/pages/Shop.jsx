@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import ShopCategoriesContainer from "../components/ShopCategoriesContainer";
 import { ProductContext } from "../context/ProductContext";
 import ProductItemList from "../components/ProductItemList";
 
@@ -10,7 +11,7 @@ function Shop() {
       <Helmet>
         <title>Categories | Dibs</title>
       </Helmet>
-      <ProductItemList />
+      <ShopCategoriesContainer />
       <Outlet />
     </>
   );

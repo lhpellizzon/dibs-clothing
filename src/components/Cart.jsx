@@ -32,16 +32,18 @@ const Cart = () => {
       </button>
 
       {isOpen && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <div className="absolute h-96 w-[250px] top-10 right-[-32px] z-20 bg-white rounded border-[1px] border-black flex flex-col p-4 items-center space-y-2">
-            <CartItemList />
-            <Link
-              to="/checkout"
-              className="w-full px-4 py-2 bg-slate-900 text-amber-50 rounded text-center"
-            >
-              Checkout
-            </Link>
-          </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="absolute h-96 w-[250px] top-10 right-[-32px] z-20 bg-white rounded border-[1px] border-black flex flex-col p-4 items-center space-y-2"
+        >
+          <CartItemList />
+          <Link
+            to="/checkout"
+            className="w-full px-4 py-2 bg-slate-900 text-amber-50 rounded text-center"
+          >
+            Checkout
+          </Link>
         </motion.div>
       )}
     </div>

@@ -19,37 +19,37 @@ const ShopCategoryItem = ({ categoryItems }) => {
         breakpoints={{
           // when window width is >= 320px
           200: {
-            slidesPerView: 1,
-            spaceBetween: 20,
+            slidesPerView: 1.5,
+            spaceBetween: 0,
           },
 
           420: {
-            slidesPerView: 2,
-            spaceBetween: 20,
+            slidesPerView: 2.5,
+            spaceBetween: 0,
           },
           540: {
-            slidesPerView: 4,
-            spaceBetween: 5,
+            slidesPerView: 3.5,
+            spaceBetween: 0,
           },
           // when window width is >= 480px
           768: {
-            slidesPerView: 6,
-            spaceBetween: 30,
+            slidesPerView: 4.5,
+            spaceBetween: 0,
           },
           // when window width is >= 640px
           1024: {
-            slidesPerView: 8,
-            spaceBetween: 40,
+            slidesPerView: 5.5,
+            spaceBetween: 0,
           },
           1280: {
-            slidesPerView: 12,
-            spaceBetween: 40,
+            slidesPerView: 6.5,
+            spaceBetween: 0,
           },
         }}
-        className="bg-blue-600 h-96"
+        className="bg-blue-600"
       >
         {items.map((item) => (
-          <SwiperSlide className="flex items-center justify-center">
+          <SwiperSlide className="flex items-center justify-center p-4">
             <ShopCategoryItems item={item} />
           </SwiperSlide>
         ))}

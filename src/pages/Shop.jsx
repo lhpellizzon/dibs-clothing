@@ -1,18 +1,16 @@
-import { useContext } from "react";
-import { Outlet } from "react-router-dom";
+import { Outlet, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import ShopCategoriesContainer from "../components/ShopCategoriesContainer";
-import { ProductContext } from "../context/ProductContext";
-import ProductItemList from "../components/ProductItemList";
 
 function Shop() {
+  const { categoryName } = useParams();
+
   return (
     <>
       <Helmet>
         <title>Categories | Dibs</title>
       </Helmet>
-      <ShopCategoriesContainer />
-      <Outlet />
+      {!categoryName ? <ShopCategoriesContainer /> : <Outlet />}
     </>
   );
 }
